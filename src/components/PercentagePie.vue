@@ -13,21 +13,11 @@ export default {
   },
   watch: {
     tag: function() {
-      //console.log("change");
       this.updatePie(this.tag);
     }
   },
-  data() {
-    return {
-      ntag: ""
-    };
-  },
   methods: {
     updatePie: function(inputValue) {
-      //console.log("my input: ", inputValue);
-      //console.log(this.id);
-      //this.ntag = this.tag + "x";
-
       const canvas = document.getElementById(this.id);
       const context = canvas.getContext("2d");
       const centerX = canvas.width / 2;
@@ -42,6 +32,12 @@ export default {
       context.closePath();
       context.fillStyle = "#ddd";
       context.fill();
+
+      /* 
+      grey full circle is defined in CSS and here, purpose:
+      CSS: defined to display circle upon mounting components
+      here: so that color circle is resetted after input changes
+      */
 
       /* part circle: */
       context.beginPath();
@@ -72,6 +68,8 @@ export default {
         return "plum";
       } else if (idString.includes("Seven")) {
         return "white";
+      } else {
+        return "black";
       }
     }
   }

@@ -3,35 +3,16 @@
     <div id="scan-text">{{scanText}}</div>
     <div id="scan-chakra">
       <div id="scan-chakra-upper">
-        <PercentagePie :tag="fields[0].chakraOne" :id="'canvasOne'+ scanId" />
-        <PercentagePie :tag="fields[1].chakraTwo" :id="'canvasTwo'+ scanId" />
-        <PercentagePie :tag="fields[2].chakraThree" :id="'canvasThree'+ scanId" />
-        <PercentagePie :tag="fields[3].chakraFour" :id="'canvasFour'+ scanId" />
-        <PercentagePie :tag="fields[4].chakraFive" :id="'canvasFive'+ scanId" />
-        <PercentagePie :tag="fields[5].chakraSix" :id="'canvasSix'+ scanId" />
-        <PercentagePie :tag="fields[6].chakraSeven" :id="'canvasSeven'+ scanId" />
+        <PercentagePie
+          v-for="field in fields"
+          :tag="field.value"
+          :id="field.name + scanId"
+          v-bind:key="field.name"
+        />
       </div>
       <div id="scan-chakra-lower">
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[0].chakraOne" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[1].chakraTwo" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[2].chakraThree" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[3].chakraFour" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[4].chakraFive" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[5].chakraSix" />
-        </div>
-        <div class="underscore">
-          <input maxlength="3" v-model="fields[6].chakraSeven" />
+        <div class="underscore" v-for="field in fields" v-bind:key="field.name">
+          <input maxlength="3" v-model="field.value" />
         </div>
       </div>
     </div>
@@ -51,13 +32,13 @@ export default {
   data() {
     return {
       fields: [
-        { chakraOne: "" },
-        { chakraTwo: "" },
-        { chakraThree: "" },
-        { chakraFour: "" },
-        { chakraFive: "" },
-        { chakraSix: "" },
-        { chakraSeven: "" }
+        { name: "chakraOne", value: "" },
+        { name: "chakraTwo", value: "" },
+        { name: "chakraThree", value: "" },
+        { name: "chakraFour", value: "" },
+        { name: "chakraFive", value: "" },
+        { name: "chakraSix", value: "" },
+        { name: "chakraSeven", value: "" }
       ]
     };
   }

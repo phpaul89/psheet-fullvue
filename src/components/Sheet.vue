@@ -5,6 +5,8 @@
       <PersonalInfo />
       <PersonalTopics />
       <Scans />
+      <CustomNotes />
+      <Conclusion />
     </div>
   </div>
 </template>
@@ -13,13 +15,17 @@
 import PersonalInfo from "./PersonalInfo.vue";
 import PersonalTopics from "./PersonalTopics.vue";
 import Scans from "./Scans.vue";
+import CustomNotes from "./CustomNotes.vue";
+import Conclusion from "./Conclusion.vue";
 
 export default {
   name: "Sheet",
   components: {
     PersonalInfo,
     PersonalTopics,
-    Scans
+    Scans,
+    CustomNotes,
+    Conclusion
   }
 };
 </script>
