@@ -9,12 +9,12 @@ export default {
   name: "PercentagePie",
   props: {
     tag: String,
-    id: String
+    id: String,
   },
   watch: {
     tag: function() {
       this.updatePie(this.tag);
-    }
+    },
   },
   methods: {
     updatePie: function(inputValue) {
@@ -30,7 +30,7 @@ export default {
       /* draw arc from 0 to 2 * Math.PI which is equivalent to 360 deg */
       context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
       context.closePath();
-      context.fillStyle = "#ddd";
+      context.fillStyle = "#fff";
       context.fill();
 
       /* 
@@ -71,14 +71,14 @@ export default {
       } else {
         return "black";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .cnv {
-  background-color: #ddd;
+  background-color: #fff;
   border-radius: 18px;
   border: 1px solid black;
 }

@@ -10,8 +10,8 @@ import Sheet from "./components/Sheet.vue";
 export default {
   name: "App",
   components: {
-    Sheet
-  }
+    Sheet,
+  },
 };
 </script>
 
