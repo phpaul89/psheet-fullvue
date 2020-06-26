@@ -1,7 +1,8 @@
 <template>
   <div id="next-steps">
     <div class="section-header-text">{{headerText}}</div>
-    <textarea id="next-textarea" v-model="nextText"></textarea>
+    {{$store.getters.nextSteps}}
+    <textarea id="next-textarea" v-model="nextText" @input="changed"></textarea>
   </div>
 </template>
 
@@ -13,6 +14,12 @@ export default {
       headerText: "Next Steps",
       nextText: ""
     };
+  },
+  methods: {
+    changed: function(event) {
+      console.log(event.target.value);
+      this.$store.commit("change", event.target.value);
+    }
   }
 };
 </script>
