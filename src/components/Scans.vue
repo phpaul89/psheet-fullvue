@@ -1,8 +1,8 @@
 <template>
   <!-- Scans -->
   <div id="scans">
-    <Scan scanText="First Scan" />
-    <Scan scanText="Second Scan" />
+    <Scan scanText="First Scan" scanId="SCA" />
+    <Scan scanText="Second Scan" scanId="SCB" />
   </div>
 </template>
 

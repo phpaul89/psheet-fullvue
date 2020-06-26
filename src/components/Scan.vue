@@ -3,35 +3,35 @@
     <div id="scan-text">{{scanText}}</div>
     <div id="scan-chakra">
       <div id="scan-chakra-upper">
-        <PercentagePie v-bind:tag="fields.chakraOne" />
-        <PercentagePie tag="2" />
-        <PercentagePie tag="3" />
-        <PercentagePie tag="4" />
-        <PercentagePie tag="5" />
-        <PercentagePie tag="6" />
-        <PercentagePie tag="7" />
+        <PercentagePie :tag="fields[0].chakraOne" :id="'canvasOne'+ scanId" />
+        <PercentagePie :tag="fields[1].chakraTwo" :id="'canvasTwo'+ scanId" />
+        <PercentagePie :tag="fields[2].chakraThree" :id="'canvasThree'+ scanId" />
+        <PercentagePie :tag="fields[3].chakraFour" :id="'canvasFour'+ scanId" />
+        <PercentagePie :tag="fields[4].chakraFive" :id="'canvasFive'+ scanId" />
+        <PercentagePie :tag="fields[5].chakraSix" :id="'canvasSix'+ scanId" />
+        <PercentagePie :tag="fields[6].chakraSeven" :id="'canvasSeven'+ scanId" />
       </div>
       <div id="scan-chakra-lower">
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraOne" />
+          <input maxlength="3" v-model="fields[0].chakraOne" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraTwo" />
+          <input maxlength="3" v-model="fields[1].chakraTwo" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraThree" />
+          <input maxlength="3" v-model="fields[2].chakraThree" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraFour" />
+          <input maxlength="3" v-model="fields[3].chakraFour" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraFive" />
+          <input maxlength="3" v-model="fields[4].chakraFive" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraSix" />
+          <input maxlength="3" v-model="fields[5].chakraSix" />
         </div>
         <div class="underscore">
-          <input maxlength="3" v-model="fields.chakraSeven" />
+          <input maxlength="3" v-model="fields[6].chakraSeven" />
         </div>
       </div>
     </div>
@@ -45,7 +45,8 @@ export default {
   name: "Scan",
   components: { PercentagePie },
   props: {
-    scanText: String
+    scanText: String,
+    scanId: String
   },
   data() {
     return {
