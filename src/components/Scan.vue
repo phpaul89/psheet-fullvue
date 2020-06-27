@@ -12,7 +12,11 @@
       </div>
       <div id="scan-chakra-lower">
         <div class="underscore" v-for="field in fields" v-bind:key="field.name">
-          <input maxlength="3" v-model="field.value" />
+          <input
+            maxlength="3"
+            v-model="field.value"
+            @input="changed(scanId, field.name, field.value)"
+          />
         </div>
       </div>
     </div>
@@ -41,6 +45,16 @@ export default {
         { name: "chakraSeven", value: "" }
       ]
     };
+  },
+  methods: {
+    changed: function(scanId, fieldName, fieldValue) {
+      const chakraObject = {
+        id: scanId,
+        fieldName: fieldName,
+        fieldValue: fieldValue
+      };
+      this.$store.commit("changeChakra", chakraObject);
+    }
   }
 };
 </script>
@@ -84,41 +98,6 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.circle {
-  height: 70%;
-  width: 6.5%;
-  border-radius: 50%;
-}
-
-.first {
-  background-color: red;
-}
-
-.second {
-  background-color: orange;
-}
-
-.third {
-  background-color: yellow;
-}
-
-.fourth {
-  background-color: limegreen;
-}
-
-.fifth {
-  background-color: skyblue;
-}
-
-.sixth {
-  background-color: plum;
-}
-
-.seventh {
-  background-color: white;
-  border: 1px solid black;
 }
 
 #scan-chakra-lower {

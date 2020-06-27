@@ -2,7 +2,7 @@
   <!-- Personal topics -->
   <div id="personal-topics" class="bottom-border">
     <div class="section-header-text">{{headerText}}</div>
-    <textarea id="topics-textarea" v-model="topicsText"></textarea>
+    <textarea id="topics-textarea" @input="changed"></textarea>
   </div>
 </template>
 
@@ -11,9 +11,17 @@ export default {
   name: "PersonalTopics",
   data() {
     return {
-      headerText: "Personal Topics",
-      topicsText: ""
+      headerText: "Personal Topics"
     };
+  },
+  methods: {
+    changed: function(event) {
+      const propertyObject = {
+        id: "personalTopics",
+        value: event.target.value
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
+    }
   }
 };
 </script>

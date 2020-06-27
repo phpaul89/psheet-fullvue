@@ -13,28 +13,28 @@
       <div class="section-input">
         <!-- Name -->
         <div id="name">
-          <input class="mb-10" v-model="nameCustomer" />
+          <input class="mb-10" id="name" @input="changed" />
         </div>
         <!-- Gender -->
         <div id="gender">
           <div id="gender-text" class="mb-10">
             <div
               v-bind:class="{'select-option':true, 'gender-active':(activeGenderCustomer === 'Male')}"
-              v-on:click="selectGender('Male')"
+              v-on:click="changedGender('Male')"
             >Male</div>
             <div
               v-bind:class="{'select-option':true, 'gender-active':(activeGenderCustomer === 'Female')}"
-              v-on:click="selectGender('Female')"
+              v-on:click="changedGender('Female')"
             >Female</div>
             <div
               v-bind:class="{'select-option':true, 'gender-active':(activeGenderCustomer === 'Other')}"
-              v-on:click="selectGender('Other')"
+              v-on:click="changedGender('Other')"
             >Other</div>
           </div>
         </div>
         <!-- Birthdate -->
         <div id="birth">
-          <input class="mb-10" v-model="birthdateCustomer" />
+          <input class="mb-10" id="birthDate" @input="changed" />
         </div>
       </div>
     </div>
@@ -47,10 +47,7 @@ export default {
   data() {
     return {
       headerText: "Personal Info",
-      nameCustomer: "",
-      genderCustomer: "",
-      activeGenderCustomer: "",
-      birthdateCustomer: ""
+      activeGenderCustomer: ""
     };
   },
   methods: {
@@ -62,6 +59,21 @@ export default {
         this.genderCustomer = option;
         this.activeGenderCustomer = option;
       }
+    },
+    changed: function(event) {
+      const propertyObject = {
+        id: event.target.id,
+        value: event.target.value
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
+    },
+    changedGender: function(gender) {
+      const propertyObject = {
+        id: "gender",
+        value: (this.activeGenderCustomer =
+          gender === this.activeGenderCustomer ? "" : gender)
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
     }
   }
 };

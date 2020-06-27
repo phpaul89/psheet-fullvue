@@ -2,7 +2,7 @@
   <!-- Custom notes -->
   <div id="custom-notes" class="bottom-border">
     <div class="section-header-text">{{headerText}}</div>
-    <textarea id="notes-textarea" v-model="notesText"></textarea>
+    <textarea id="notes-textarea" @input="changed"></textarea>
   </div>
 </template>
 
@@ -11,9 +11,17 @@ export default {
   name: "CustomNotes",
   data() {
     return {
-      headerText: "Custom Notes",
-      notesText: ""
+      headerText: "Custom Notes"
     };
+  },
+  methods: {
+    changed: function(event) {
+      const propertyObject = {
+        id: "customNotes",
+        value: event.target.value
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
+    }
   }
 };
 </script>

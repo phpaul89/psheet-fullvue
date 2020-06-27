@@ -9,12 +9,12 @@ export default {
   name: "PercentagePie",
   props: {
     tag: String,
-    id: String,
+    id: String
   },
   watch: {
     tag: function() {
       this.updatePie(this.tag);
-    },
+    }
   },
   methods: {
     updatePie: function(inputValue) {
@@ -71,12 +71,18 @@ export default {
       } else {
         return "black";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+.circle {
+  height: 70%;
+  width: 6.5%;
+  border-radius: 50%;
+}
+
 .cnv {
   background-color: #fff;
   border-radius: 18px;

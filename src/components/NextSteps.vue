@@ -1,8 +1,7 @@
 <template>
   <div id="next-steps">
     <div class="section-header-text">{{headerText}}</div>
-    {{$store.getters.nextSteps}}
-    <textarea id="next-textarea" v-model="nextText" @input="changed"></textarea>
+    <textarea id="next-textarea" @input="changed"></textarea>
   </div>
 </template>
 
@@ -11,14 +10,16 @@ export default {
   name: "NextSteps",
   data() {
     return {
-      headerText: "Next Steps",
-      nextText: ""
+      headerText: "Next Steps"
     };
   },
   methods: {
     changed: function(event) {
-      console.log(event.target.value);
-      this.$store.commit("change", event.target.value);
+      const propertyObject = {
+        id: "nextSteps",
+        value: event.target.value
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
     }
   }
 };

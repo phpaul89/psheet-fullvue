@@ -1,7 +1,7 @@
 <template>
   <div id="further-notes" class="right-border">
     <div class="section-header-text">{{headerText}}</div>
-    <textarea id="further-textarea" v-model="furtherText"></textarea>
+    <textarea id="further-textarea" @input="changed"></textarea>
   </div>
 </template>
 
@@ -10,9 +10,17 @@ export default {
   name: "FurtherNotes",
   data() {
     return {
-      headerText: "Further Notes",
-      furtherText: ""
+      headerText: "Further Notes"
     };
+  },
+  methods: {
+    changed: function(event) {
+      const propertyObject = {
+        id: "furtherNotes",
+        value: event.target.value
+      };
+      this.$store.commit("changeCustomerPropertyValue", propertyObject);
+    }
   }
 };
 </script>
