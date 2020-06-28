@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Sheet />
-    <button id="save" v-on:click="saveSheet">Save</button>
+    <div id="action-bar">
+      <button id="save" v-on:click="saveSheet">Save</button>
+    </div>
   </div>
 </template>
 
@@ -59,9 +61,34 @@ body {
   height: 100%;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+#action-bar {
+  height: 29.7cm;
+}
+
+#save {
+  background: white;
+  border: 1px solid gray;
+  border-radius: 50%;
+  margin: 0 10px 10px 10px;
+  padding: 14px 6px 14px 6px;
+
+  font-family: "Muli", sans-serif;
+  font-size: 1em;
+  color: black;
+
+  transition-duration: 0.2s;
+}
+
+#save:hover {
+  background: lightgreen;
+  cursor: pointer;
+
+  transition-duration: 0.2s;
 }
 
 .mb-10 {

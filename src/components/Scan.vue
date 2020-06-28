@@ -1,6 +1,6 @@
 <template>
   <div id="scan" class="bottom-border">
-    <div id="scan-text">{{scanText}}</div>
+    <div id="scan-text">{{ scanText }}</div>
     <div id="scan-chakra">
       <div id="scan-chakra-upper">
         <PercentagePie
@@ -31,7 +31,7 @@ export default {
   components: { PercentagePie },
   props: {
     scanText: String,
-    scanId: String
+    scanId: String,
   },
   data() {
     return {
@@ -42,8 +42,8 @@ export default {
         { name: "chakraFour", value: "" },
         { name: "chakraFive", value: "" },
         { name: "chakraSix", value: "" },
-        { name: "chakraSeven", value: "" }
-      ]
+        { name: "chakraSeven", value: "" },
+      ],
     };
   },
   methods: {
@@ -51,11 +51,11 @@ export default {
       const chakraObject = {
         id: scanId,
         fieldName: fieldName,
-        fieldValue: fieldValue
+        fieldValue: fieldValue,
       };
       this.$store.commit("changeChakra", chakraObject);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -78,11 +78,6 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-#scan-text:hover {
-  background-color: whitesmoke;
-  cursor: pointer;
 }
 
 #scan-chakra {

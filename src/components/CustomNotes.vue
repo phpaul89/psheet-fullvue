@@ -1,7 +1,7 @@
 <template>
   <!-- Custom notes -->
   <div id="custom-notes" class="bottom-border">
-    <div class="section-header-text">{{headerText}}</div>
+    <div class="section-header-text">{{ headerText }}</div>
     <textarea id="notes-textarea" @input="changed"></textarea>
   </div>
 </template>
@@ -11,18 +11,18 @@ export default {
   name: "CustomNotes",
   data() {
     return {
-      headerText: "Custom Notes"
+      headerText: "Custom Notes",
     };
   },
   methods: {
     changed: function(event) {
       const propertyObject = {
         id: "customNotes",
-        value: event.target.value
+        value: event.target.value,
       };
       this.$store.commit("changeCustomerPropertyValue", propertyObject);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -35,11 +35,6 @@ export default {
 .section-header-text {
   margin: 0;
   padding: 20px 0 0 20px;
-  cursor: pointer;
-}
-
-.section-header-text:hover {
-  background-color: whitesmoke;
 }
 
 #notes-textarea {
