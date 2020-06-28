@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Sheet />
+    <button id="save" v-on:click="saveSheet">Save</button>
   </div>
 </template>
 
@@ -11,6 +12,24 @@ export default {
   name: "App",
   components: {
     Sheet,
+  },
+  methods: {
+    saveSheet: function() {
+      console.log("Saved sheet data: ", this.$store.getters.sheetData);
+
+      fetch("http://localhost:3000/saveSheet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, // w/o headers option, req.body in backend would be empty
+        body: JSON.stringify({ sheetData: this.$store.getters.sheetData }),
+      })
+        .then((response) => response.text())
+        .then((response) => {
+          console.log("hello again from frontend: ", response);
+        })
+        .catch(function(error) {
+          console.log("Looks like there was a problem: \n", error);
+        });
+    },
   },
 };
 </script>
@@ -40,7 +59,7 @@ body {
   height: 100%;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

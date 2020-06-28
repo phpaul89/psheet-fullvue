@@ -112,7 +112,7 @@ export default {
 
 .underscore {
   height: 60%;
-  width: 6.5%;
+  width: 38px;
 
   border-bottom: 1px solid lightgray;
 

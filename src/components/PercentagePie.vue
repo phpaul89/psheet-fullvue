@@ -67,7 +67,7 @@ export default {
       } else if (idString.includes("Six")) {
         return "plum";
       } else if (idString.includes("Seven")) {
-        return "white";
+        return "whitesmoke";
       } else {
         return "black";
       }
@@ -78,8 +78,8 @@ export default {
 
 <style scoped>
 .circle {
-  height: 70%;
-  width: 6.5%;
+  height: 38px;
+  width: 38px;
   border-radius: 50%;
 }
 
