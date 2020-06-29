@@ -4,18 +4,22 @@
     <div id="scan-chakra">
       <div id="scan-chakra-upper">
         <PercentagePie
-          v-for="field in fields"
-          :tag="field.value"
+          v-for="field in this.chakraFields[scanId]"
+          :tag="field.value.toString()"
           :id="field.name + scanId"
           v-bind:key="field.name"
         />
       </div>
       <div id="scan-chakra-lower">
-        <div class="underscore" v-for="field in fields" v-bind:key="field.name">
+        <div
+          class="underscore"
+          v-for="field in this.chakraFields[scanId]"
+          v-bind:key="field.name"
+        >
           <input
             maxlength="3"
-            v-model="field.value"
             @input="changed(scanId, field.name, field.value)"
+            v-model="field.value"
           />
         </div>
       </div>
@@ -32,19 +36,7 @@ export default {
   props: {
     scanText: String,
     scanId: String,
-  },
-  data() {
-    return {
-      fields: [
-        { name: "chakraOne", value: "" },
-        { name: "chakraTwo", value: "" },
-        { name: "chakraThree", value: "" },
-        { name: "chakraFour", value: "" },
-        { name: "chakraFive", value: "" },
-        { name: "chakraSix", value: "" },
-        { name: "chakraSeven", value: "" },
-      ],
-    };
+    chakraFields: Object,
   },
   methods: {
     changed: function(scanId, fieldName, fieldValue) {
@@ -53,6 +45,7 @@ export default {
         fieldName: fieldName,
         fieldValue: fieldValue,
       };
+
       this.$store.commit("changeChakra", chakraObject);
     },
   },

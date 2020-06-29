@@ -1,8 +1,16 @@
 <template>
   <!-- Scans -->
   <div id="scans">
-    <Scan scanText="First Scan" scanId="firstScan" />
-    <Scan scanText="Second Scan" scanId="secondScan" />
+    <Scan
+      scanText="First Scan"
+      scanId="firstScan"
+      :chakraFields="this.$store.getters.patientSheetData"
+    />
+    <Scan
+      scanText="Second Scan"
+      scanId="secondScan"
+      :chakraFields="this.$store.getters.patientSheetData"
+    />
   </div>
 </template>
 
@@ -11,7 +19,7 @@ import Scan from "./Scan.vue";
 
 export default {
   name: "Scans",
-  components: { Scan }
+  components: { Scan },
 };
 </script>
 

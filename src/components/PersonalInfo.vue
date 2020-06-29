@@ -14,7 +14,12 @@
         <div class="section-input">
           <!-- Name -->
           <div id="name">
-            <input class="mb-10" id="name" @input="changed" />
+            <input
+              class="mb-10"
+              id="name"
+              @input="changed"
+              :value="this.$store.getters.patientSheetData.name"
+            />
           </div>
           <!-- Gender -->
           <div id="gender">
@@ -22,7 +27,8 @@
               <div
                 v-bind:class="{
                   'select-option': true,
-                  'gender-active': activeGenderCustomer === 'Male',
+                  'gender-active':
+                    this.$store.getters.patientSheetData.gender === 'Male',
                 }"
                 v-on:click="changedGender('Male')"
               >
@@ -31,7 +37,8 @@
               <div
                 v-bind:class="{
                   'select-option': true,
-                  'gender-active': activeGenderCustomer === 'Female',
+                  'gender-active':
+                    this.$store.getters.patientSheetData.gender === 'Female',
                 }"
                 v-on:click="changedGender('Female')"
               >
@@ -40,7 +47,8 @@
               <div
                 v-bind:class="{
                   'select-option': true,
-                  'gender-active': activeGenderCustomer === 'Other',
+                  'gender-active':
+                    this.$store.getters.patientSheetData.gender === 'Other',
                 }"
                 v-on:click="changedGender('Other')"
               >
@@ -50,13 +58,23 @@
           </div>
           <!-- Birthdate -->
           <div id="birth">
-            <input class="mb-10" id="birthDate" @input="changed" />
+            <input
+              class="mb-10"
+              id="birthDate"
+              @input="changed"
+              :value="this.$store.getters.patientSheetData.birthDate"
+            />
           </div>
         </div>
       </div>
       <div id="section-right-input">
         <div class="date-input">
-          <input type="date" id="date" @input="changed" />
+          <input
+            type="date"
+            id="date"
+            @input="changed"
+            :value="this.$store.getters.patientSheetData.date"
+          />
         </div>
       </div>
     </div>

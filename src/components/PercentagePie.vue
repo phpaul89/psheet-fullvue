@@ -9,12 +9,15 @@ export default {
   name: "PercentagePie",
   props: {
     tag: String,
-    id: String
+    id: String,
+  },
+  mounted: function() {
+    this.updatePie(this.tag);
   },
   watch: {
     tag: function() {
       this.updatePie(this.tag);
-    }
+    },
   },
   methods: {
     updatePie: function(inputValue) {
@@ -71,8 +74,8 @@ export default {
       } else {
         return "black";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -86,6 +89,6 @@ export default {
 .cnv {
   background-color: #fff;
   border-radius: 18px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
 }
 </style>

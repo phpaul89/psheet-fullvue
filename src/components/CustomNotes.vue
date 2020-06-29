@@ -2,7 +2,11 @@
   <!-- Custom notes -->
   <div id="custom-notes" class="bottom-border">
     <div class="section-header-text">{{ headerText }}</div>
-    <textarea id="notes-textarea" @input="changed"></textarea>
+    <textarea
+      id="notes-textarea"
+      @input="changed"
+      :value="this.$store.getters.patientSheetData.customNotes"
+    ></textarea>
   </div>
 </template>
 

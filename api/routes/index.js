@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Sheet = require("../models/Sheet.js");
+const Sheet = require("../models/SheetModel.js");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -20,7 +20,7 @@ router.post("/saveSheet", (request, response, next) => {
     customNotes,
     furtherNotes,
     nextSteps,
-  } = request.body.sheetData;
+  } = request.body.patientSheetData;
 
   Sheet.create({
     name: name,
@@ -28,30 +28,30 @@ router.post("/saveSheet", (request, response, next) => {
     gender: gender,
     birthDate: birthDate,
     personalTopics: personalTopics,
-    firstScan: {
-      chakraOne: firstScan.chakraOne,
-      chakraTwo: firstScan.chakraTwo,
-      chakraThree: firstScan.chakraThree,
-      chakraFour: firstScan.chakraFour,
-      chakraFive: firstScan.chakraFive,
-      chakraSix: firstScan.chakraSix,
-      chakraSeven: firstScan.chakraSeven,
-    },
-    secondScan: {
-      chakraOne: secondScan.chakraOne,
-      chakraTwo: secondScan.chakraTwo,
-      chakraThree: secondScan.chakraThree,
-      chakraFour: secondScan.chakraFour,
-      chakraFive: secondScan.chakraFive,
-      chakraSix: secondScan.chakraSix,
-      chakraSeven: secondScan.chakraSeven,
-    },
+    firstScan: [
+      { name: firstScan[0].name, value: firstScan[0].value },
+      { name: firstScan[1].name, value: firstScan[1].value },
+      { name: firstScan[2].name, value: firstScan[2].value },
+      { name: firstScan[3].name, value: firstScan[3].value },
+      { name: firstScan[4].name, value: firstScan[4].value },
+      { name: firstScan[5].name, value: firstScan[5].value },
+      { name: firstScan[6].name, value: firstScan[6].value },
+    ],
+    secondScan: [
+      { name: secondScan[0].name, value: secondScan[0].value },
+      { name: secondScan[1].name, value: secondScan[1].value },
+      { name: secondScan[2].name, value: secondScan[2].value },
+      { name: secondScan[3].name, value: secondScan[3].value },
+      { name: secondScan[4].name, value: secondScan[4].value },
+      { name: secondScan[5].name, value: secondScan[5].value },
+      { name: secondScan[6].name, value: secondScan[6].value },
+    ],
     customNotes: customNotes,
     furtherNotes: furtherNotes,
     nextSteps: nextSteps,
   })
-    .then((response) => {
-      console.log("Sheet created: ", response);
+    .then((success) => {
+      console.log("Sheet created: ", success);
       response.status(201).json({ message: "Created sheet successfully!" });
     })
     .catch((error) => {
@@ -59,6 +59,17 @@ router.post("/saveSheet", (request, response, next) => {
     });
 
   //response.send("x");
+});
+
+router.get("/openSheet", (request, response, next) => {
+  Sheet.findOne({ name: "John Doe" })
+    .then((sheet) => {
+      console.log("querying this sheet: ", sheet);
+      response.status(201).json(sheet);
+    })
+    .catch((error) => {
+      response.json(error);
+    });
 });
 
 module.exports = router;

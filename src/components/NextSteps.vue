@@ -1,7 +1,11 @@
 <template>
   <div id="next-steps">
     <div class="section-header-text">{{ headerText }}</div>
-    <textarea id="next-textarea" @input="changed"></textarea>
+    <textarea
+      id="next-textarea"
+      @input="changed"
+      :value="this.$store.getters.patientSheetData.nextSteps"
+    ></textarea>
   </div>
 </template>
 

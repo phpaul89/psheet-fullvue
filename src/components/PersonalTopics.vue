@@ -2,7 +2,11 @@
   <!-- Personal topics -->
   <div id="personal-topics" class="bottom-border">
     <div class="section-header-text">{{ headerText }}</div>
-    <textarea id="topics-textarea" @input="changed"></textarea>
+    <textarea
+      id="topics-textarea"
+      @input="changed"
+      :value="this.$store.getters.patientSheetData.personalTopics"
+    ></textarea>
   </div>
 </template>
 

@@ -2,6 +2,7 @@
   <div id="app">
     <Sheet />
     <div id="action-bar">
+      <button id="open" v-on:click="openSheet">Open</button>
       <button id="save" v-on:click="saveSheet">Save</button>
     </div>
   </div>
@@ -17,16 +18,33 @@ export default {
   },
   methods: {
     saveSheet: function() {
-      console.log("Saved sheet data: ", this.$store.getters.sheetData);
+      console.log("Saved sheet data: ", this.$store.getters.patientSheetData);
 
       fetch("http://localhost:3000/saveSheet", {
         method: "POST",
         headers: { "Content-Type": "application/json" }, // w/o headers option, req.body in backend would be empty
-        body: JSON.stringify({ sheetData: this.$store.getters.sheetData }),
+        body: JSON.stringify({
+          patientSheetData: this.$store.getters.patientSheetData,
+        }),
       })
-        .then((response) => response.text())
+        .then((response) => {
+          return response.json();
+        })
         .then((response) => {
           console.log("hello again from frontend: ", response);
+        })
+        .catch(function(error) {
+          console.log("Looks like there was a problem: \n", error);
+        });
+    },
+    openSheet: function() {
+      console.log("Open sheet");
+
+      fetch("http://localhost:3000/openSheet")
+        .then((response) => response.json())
+        .then((patient) => {
+          // console.log("Got this sheet: ", patient);
+          this.$store.commit("getPatientSheet", patient);
         })
         .catch(function(error) {
           console.log("Looks like there was a problem: \n", error);
@@ -68,9 +86,13 @@ body {
 
 #action-bar {
   height: 29.7cm;
+
+  display: flex;
+  flex-direction: column;
 }
 
-#save {
+#save,
+#open {
   background: white;
   border: 1px solid gray;
   border-radius: 50%;
@@ -84,7 +106,8 @@ body {
   transition-duration: 0.2s;
 }
 
-#save:hover {
+#save:hover,
+#open:hover {
   background: lightgreen;
   cursor: pointer;
 
