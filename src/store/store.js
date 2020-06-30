@@ -6,35 +6,38 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     sheetData: {
-      patient: {
-        _id: "",
-        name: "",
-        date: "",
-        gender: "",
-        birthDate: "",
-        personalTopics: "",
-        firstScan: [
-          { _id: "", name: "chakraOne", value: "" },
-          { _id: "", name: "chakraTwo", value: "" },
-          { _id: "", name: "chakraThree", value: "" },
-          { _id: "", name: "chakraFour", value: "" },
-          { _id: "", name: "chakraFive", value: "" },
-          { _id: "", name: "chakraSix", value: "" },
-          { _id: "", name: "chakraSeven", value: "" },
-        ],
-        secondScan: [
-          { _id: "", name: "chakraOne", value: "" },
-          { _id: "", name: "chakraTwo", value: "" },
-          { _id: "", name: "chakraThree", value: "" },
-          { _id: "", name: "chakraFour", value: "" },
-          { _id: "", name: "chakraFive", value: "" },
-          { _id: "", name: "chakraSix", value: "" },
-          { _id: "", name: "chakraSeven", value: "" },
-        ],
-        customNotes: "",
-        furtherNotes: "",
-        nextSteps: "",
-      },
+      //patient: [],
+      patient: [
+        {
+          _id: "",
+          name: "",
+          date: "",
+          gender: "",
+          birthDate: "",
+          personalTopics: "",
+          firstScan: [
+            { _id: "", name: "chakraOne", value: "" },
+            { _id: "", name: "chakraTwo", value: "" },
+            { _id: "", name: "chakraThree", value: "" },
+            { _id: "", name: "chakraFour", value: "" },
+            { _id: "", name: "chakraFive", value: "" },
+            { _id: "", name: "chakraSix", value: "" },
+            { _id: "", name: "chakraSeven", value: "" },
+          ],
+          secondScan: [
+            { _id: "", name: "chakraOne", value: "" },
+            { _id: "", name: "chakraTwo", value: "" },
+            { _id: "", name: "chakraThree", value: "" },
+            { _id: "", name: "chakraFour", value: "" },
+            { _id: "", name: "chakraFive", value: "" },
+            { _id: "", name: "chakraSix", value: "" },
+            { _id: "", name: "chakraSeven", value: "" },
+          ],
+          customNotes: "",
+          furtherNotes: "",
+          nextSteps: "",
+        },
+      ],
     },
   },
   // state cannot be manipulated except by using 'mutations':
@@ -48,12 +51,13 @@ export const store = new Vuex.Store({
         chakraObject.fieldValue;
     },
     getPatientSheet(state, patientObject) {
-      state.sheetData.patient = patientObject;
+      console.log("getting sheet: ", patientObject);
+      state.sheetData.patient.unshift(patientObject);
     },
   },
   // 'getters' are used to have a look into the state:
   getters: {
-    patientSheetData: (state) => state.sheetData.patient,
+    patientSheetData: (state) => state.sheetData.patient[0],
     nextSteps: (state) => state.sheetData.patient.nextSteps, // 'state' as parameter, returning 'state.nextSteps'
   },
 });
