@@ -62,14 +62,23 @@ router.post("/saveSheet", (request, response, next) => {
 });
 
 router.get("/openSheet", (request, response, next) => {
-  Sheet.findOne({ name: "John Doe" })
-    .then((sheet) => {
-      console.log("querying this sheet: ", sheet);
-      response.status(201).json(sheet);
+  Sheet.find({ name: "John Doe" })
+    .then((sheets) => {
+      console.log("These sheets exist: ", sheets);
+      response.status(201).json(sheets);
     })
     .catch((error) => {
       response.json(error);
     });
+
+  // Sheet.findOne({ name: "John Doe" })
+  //   .then((sheet) => {
+  //     console.log("querying this sheet: ", sheet);
+  //     response.status(201).json(sheet);
+  //   })
+  //   .catch((error) => {
+  //     response.json(error);
+  //   });
 });
 
 module.exports = router;

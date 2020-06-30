@@ -46,9 +46,9 @@ export default {
 
       fetch("http://localhost:3000/openSheet")
         .then((response) => response.json())
-        .then((patient) => {
+        .then((patientSheets) => {
           // console.log("Got this sheet: ", patient);
-          this.$store.commit("getPatientSheet", patient);
+          this.$store.commit("getPatientSheet", patientSheets);
         })
         .catch(function(error) {
           console.log("Looks like there was a problem: \n", error);

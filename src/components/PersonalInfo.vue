@@ -16,7 +16,7 @@
           <div id="name">
             <input
               class="mb-10"
-              id="name"
+              flag="name"
               @input="changed"
               :value="this.$store.getters.patientSheetData($sheetIndex).name"
             />
@@ -63,7 +63,7 @@
           <div id="birth">
             <input
               class="mb-10"
-              id="birthDate"
+              flag="birthDate"
               @input="changed"
               :value="
                 this.$store.getters.patientSheetData($sheetIndex).birthDate
@@ -76,7 +76,7 @@
         <div class="date-input">
           <input
             type="date"
-            id="date"
+            flag="date"
             @input="changed"
             :value="this.$store.getters.patientSheetData($sheetIndex).date"
           />
@@ -108,7 +108,7 @@ export default {
     },
     changed: function(event) {
       const propertyObject = {
-        id: event.target.id,
+        id: event.target.getAttribute("flag"),
         value: event.target.value,
       };
       this.$store.commit("changeCustomerPropertyValue", propertyObject);

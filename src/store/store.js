@@ -52,7 +52,10 @@ export const store = new Vuex.Store({
     },
     getPatientSheet(state, patientObject) {
       console.log("getting sheet: ", patientObject);
-      state.sheetData.patient.push(patientObject);
+      patientObject.forEach((patientSheet) => {
+        console.log("Pushing this sheet to state: ", patientSheet._id);
+        state.sheetData.patient.push(patientSheet);
+      });
     },
   },
   // 'getters' are used to have a look into the state:
