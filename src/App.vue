@@ -114,6 +114,11 @@ body {
   transition-duration: 0.2s;
 }
 
+#save:focus,
+#open:focus {
+  outline: none;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
