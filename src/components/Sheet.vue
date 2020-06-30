@@ -20,13 +20,22 @@ import Conclusion from "./Conclusion.vue";
 
 export default {
   name: "Sheet",
+  props: { sheetIndex: Number },
+  provide() {
+    return {
+      $sheetIndex: this.sheetIndex,
+    };
+  },
   components: {
     PersonalInfo,
     PersonalTopics,
     Scans,
     CustomNotes,
-    Conclusion
-  }
+    Conclusion,
+  },
+  created: function() {
+    console.log("sheet created with index: ", this.sheetIndex);
+  },
 };
 </script>
 

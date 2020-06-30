@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Sheet />
+    <Sheet
+      v-for="(sheet, sheetIndex) in $store.state.sheetData.patient"
+      :key="sheet._id + sheetIndex"
+      :sheetIndex="sheetIndex"
+    />
     <div id="action-bar">
       <button id="open" v-on:click="openSheet">Open</button>
       <button id="save" v-on:click="saveSheet">Save</button>
@@ -79,7 +83,7 @@ body {
   height: 100%;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

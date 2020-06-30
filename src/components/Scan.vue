@@ -4,16 +4,18 @@
     <div id="scan-chakra">
       <div id="scan-chakra-upper">
         <PercentagePie
-          v-for="field in this.chakraFields[scanId]"
+          v-for="field in this.$store.getters.patientSheetData($sheetIndex)[
+            scanId
+          ]"
           :tag="field.value.toString()"
-          :id="field.name + scanId"
+          :id="field.name + scanId + $sheetIndex"
           v-bind:key="field.name"
         />
       </div>
       <div id="scan-chakra-lower">
         <div
           class="underscore"
-          v-for="field in this.chakraFields[scanId]"
+          v-for="field in this.chakraFields[this.scanId]"
           v-bind:key="field.name"
         >
           <input
@@ -32,11 +34,19 @@ import PercentagePie from "./PercentagePie.vue";
 
 export default {
   name: "Scan",
+  inject: ["$sheetIndex"],
   components: { PercentagePie },
   props: {
     scanText: String,
     scanId: String,
     chakraFields: Object,
+  },
+  mounted: function() {
+    console.log(
+      "mounted on Scan: ",
+      this.chakraFields[this.scanId],
+      this.$sheetIndex
+    );
   },
   methods: {
     changed: function(scanId, fieldName, fieldValue) {

@@ -12,6 +12,7 @@ export default {
     id: String,
   },
   mounted: function() {
+    //console.log("inputeValue pie: ", this.tag);
     this.updatePie(this.tag);
   },
   watch: {

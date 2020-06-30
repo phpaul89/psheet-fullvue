@@ -4,7 +4,7 @@
     <textarea
       id="next-textarea"
       @input="changed"
-      :value="this.$store.getters.patientSheetData.nextSteps"
+      :value="this.$store.getters.patientSheetData($sheetIndex).nextSteps"
     ></textarea>
   </div>
 </template>
@@ -12,6 +12,7 @@
 <script>
 export default {
   name: "NextSteps",
+  inject: ["$sheetIndex"],
   data() {
     return {
       headerText: "Next Steps",

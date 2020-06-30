@@ -18,7 +18,7 @@
               class="mb-10"
               id="name"
               @input="changed"
-              :value="this.$store.getters.patientSheetData.name"
+              :value="this.$store.getters.patientSheetData($sheetIndex).name"
             />
           </div>
           <!-- Gender -->
@@ -28,7 +28,8 @@
                 v-bind:class="{
                   'select-option': true,
                   'gender-active':
-                    this.$store.getters.patientSheetData.gender === 'Male',
+                    this.$store.getters.patientSheetData($sheetIndex).gender ===
+                    'Male',
                 }"
                 v-on:click="changedGender('Male')"
               >
@@ -38,7 +39,8 @@
                 v-bind:class="{
                   'select-option': true,
                   'gender-active':
-                    this.$store.getters.patientSheetData.gender === 'Female',
+                    this.$store.getters.patientSheetData($sheetIndex).gender ===
+                    'Female',
                 }"
                 v-on:click="changedGender('Female')"
               >
@@ -48,7 +50,8 @@
                 v-bind:class="{
                   'select-option': true,
                   'gender-active':
-                    this.$store.getters.patientSheetData.gender === 'Other',
+                    this.$store.getters.patientSheetData($sheetIndex).gender ===
+                    'Other',
                 }"
                 v-on:click="changedGender('Other')"
               >
@@ -62,7 +65,9 @@
               class="mb-10"
               id="birthDate"
               @input="changed"
-              :value="this.$store.getters.patientSheetData.birthDate"
+              :value="
+                this.$store.getters.patientSheetData($sheetIndex).birthDate
+              "
             />
           </div>
         </div>
@@ -73,7 +78,7 @@
             type="date"
             id="date"
             @input="changed"
-            :value="this.$store.getters.patientSheetData.date"
+            :value="this.$store.getters.patientSheetData($sheetIndex).date"
           />
         </div>
       </div>
@@ -84,6 +89,7 @@
 <script>
 export default {
   name: "PersonalInfo",
+  inject: ["$sheetIndex"],
   data() {
     return {
       headerText: "Personal Info",

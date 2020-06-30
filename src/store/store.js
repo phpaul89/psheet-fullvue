@@ -52,12 +52,13 @@ export const store = new Vuex.Store({
     },
     getPatientSheet(state, patientObject) {
       console.log("getting sheet: ", patientObject);
-      state.sheetData.patient.unshift(patientObject);
+      state.sheetData.patient.push(patientObject);
     },
   },
   // 'getters' are used to have a look into the state:
   getters: {
-    patientSheetData: (state) => state.sheetData.patient[0],
+    //allSheetData: (state) => state.sheetData.patient,
+    patientSheetData: (state) => (id) => state.sheetData.patient[id],
     nextSteps: (state) => state.sheetData.patient.nextSteps, // 'state' as parameter, returning 'state.nextSteps'
   },
 });

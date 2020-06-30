@@ -5,7 +5,7 @@
     <textarea
       id="notes-textarea"
       @input="changed"
-      :value="this.$store.getters.patientSheetData.customNotes"
+      :value="this.$store.getters.patientSheetData($sheetIndex).customNotes"
     ></textarea>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 export default {
   name: "CustomNotes",
+  inject: ["$sheetIndex"],
   data() {
     return {
       headerText: "Custom Notes",
